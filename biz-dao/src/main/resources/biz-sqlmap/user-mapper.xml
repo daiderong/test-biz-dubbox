@@ -73,6 +73,30 @@
 			WHERE username = #{username}
 	</update>	
 		
+		
+		
+		
+		
+	<!-- 以下为自定义 sql -->
+
+	<select id="groupByAgeSeg" resultType="com.daiderong.test.dubbo.vo.UserAgeSeg">
+		SELECT
+		sum(agSeg &lt; 6)lt6, sum(agSeg = 6)a6x,
+		sum(agSeg = 7)a7x,
+		sum(agSeg = 8)a8x,
+		sum(agSeg >= 9)gte9
+		FROM
+		(
+		SELECT
+		FLOOR(age / 10)agSeg
+		FROM
+		USER
+
+		)n_t
+	</select>
+		
+	
+		
 	
 
 </mapper>

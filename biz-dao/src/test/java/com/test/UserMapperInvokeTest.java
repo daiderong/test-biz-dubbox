@@ -43,4 +43,11 @@ public class UserMapperInvokeTest extends JunitBaseTest  {
 	}
 	
 	
+	@Test
+	public void testGroupByAge() throws Exception {
+		System.out.println( userMapperInvoke.getMapper().groupByAgeSeg());
+	
+	}
+	
+	
 }

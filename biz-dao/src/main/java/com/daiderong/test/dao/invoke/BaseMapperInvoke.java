@@ -12,7 +12,17 @@ import com.daiderong.test.dao.mapper.BaseMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-
+/**
+ * 
+ * 基本mapper类
+* @ClassName: BaseMapperInvoke 
+* @author daiderong
+* @date 2017年8月8日 下午11:07:12 
+* 
+* @param <Mapper> 定义的sqlMapper的类
+* @param <T>   JavaBean
+* @param <ID>  JavaBean的ID类型
+ */
 public class BaseMapperInvoke<Mapper extends BaseMapper,T,ID> {
 
 	
