@@ -4,9 +4,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
+	
 	<parent>
-		<artifactId>healthins-web-pom</artifactId>
-		<groupId>com.wondersgroup.healthins.base</groupId>
+		<groupId>com.daiderong.test.base</groupId>
+		<artifactId>biz-parent</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
