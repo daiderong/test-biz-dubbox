@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans     
+    xmlns="http://www.springframework.org/schema/beans"     
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
+    xmlns:p="http://www.springframework.org/schema/p"     
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:util="http://www.springframework.org/schema/util"  
+    xmlns:mvc="http://www.springframework.org/schema/mvc"   
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans     
+    http://www.springframework.org/schema/beans/spring-beans.xsd  
+    http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context.xsd  
+    http://www.springframework.org/schema/util   
+    http://www.springframework.org/schema/util/spring-util.xsd  
+    http://code.alibabatech.com/schema/dubbo   
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd "> 
+
+
+
+
+
+	<!-- 加载 dubbo配置文件 -->
+	 <bean 
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" scope="prototype">
+		<property name="locations">
+			<list>
+				<!-- 开发可以使用classpath中的 -->
+				<value>classpath:dubbo.properties</value>
+				<!-- <value>file:/opt/wondersgroup/${webAppRootKey}/dubbo.properties</value> -->
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean> 
+	
+	
+	
+
+
+    <!-- 加载 dubbo配置文件 -->	
+	<dubbo:application name="biz_provider" />
+	 <dubbo:registry protocol="zookeeper"  address="${dubbo.registry.host_ports}" register="${dubbo.registry.register}"/> 
+	<!-- <dubbo:registry address="${dubbo.registry.address}" /> -->
+	
+	
+	
+    <!-- 使用注解方式暴露接口 -->     
+    <dubbo:annotation package="com.daiderong.test.dubbo.provider.service" />  
+    <!-- 加入spring注解扫描 -->  
+    <context:component-scan base-package="com.daiderong.test.dubbo.provider.service"/>  
+	
+	
+	<!--<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.AssessApplyCommonService" ref="assessApplyCommonService"  />
+	 <dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.AssessApplyInvesCommonService" ref="assessApplyInvesCommonService"  />
+	<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.AssessBasicInfoCommonService" ref="assessBasicInfoCommonService"  />
+	<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.AssessBlacklistCommonService" ref="assessBlacklistCommonService"  />
+	<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.AssessOrderAnswerCommonService" ref="assessOrderAnswerCommonService"  />
+	<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.AssessOrderCancelTimerService" ref="assessOrderCancelTimerService"  />
+	<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.AssessOrderCommonService" ref="assessOrderCommonService"  />
+	<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.AssessOrderMngCommonService" ref="assessOrderMngCommonService"  />
+	<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.AssessOrderTaskCommonService" ref="assessOrderTaskCommonService"  />
+	<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.AssessQuestionAnswerCommonService" ref="assessQuestionAnswerCommonService"  />
+	<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.AssessQuestionPicCommonService" ref="assessQuestionPicCommonService"  />
+	<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.AssessUserCommonService" ref="assessUserCommonService"  />
+	<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.InsurancePaymentTaskCommonService" ref="insurancePaymentTaskCommonService"  />
+	<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.InsUserCommonService" ref="insUserCommonService"  />
+	<dubbo:service interface="com.wondersgroup.ltcins.core.cd.provider.service.UserWebOrderCommonService" ref="userWebOrderCommonService"  /> -->
+</beans>

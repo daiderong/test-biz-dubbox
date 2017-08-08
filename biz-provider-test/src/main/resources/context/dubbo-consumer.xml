@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans     
+    xmlns="http://www.springframework.org/schema/beans"     
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
+    xmlns:p="http://www.springframework.org/schema/p"     
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:util="http://www.springframework.org/schema/util"  
+    xmlns:mvc="http://www.springframework.org/schema/mvc"   
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans     
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+    http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd  
+    http://www.springframework.org/schema/util   
+    http://www.springframework.org/schema/util/spring-util-4.0.xsd  
+    http://www.springframework.org/schema/mvc  
+    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd  
+    http://code.alibabatech.com/schema/dubbo   
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd"> 
+           
+	
+	
+<!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->  
+    <dubbo:application name="test_consumer" />  
+    
+	
+  
+  
+  
+    
+    
+    
+    <!-- 加载 dubbo配置文件 -->
+	<bean 
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<!-- 开发可以使用classpath中的-->
+				 <value>classpath:dubbo-consumer.properties</value> 
+				 <!-- 生产中推荐在外边配置配置文件，好区分 --> 
+				<!-- <value>file:/opt/wondersgroup/yfybx/user-auth/dubbo-consumer.properties</value> -->
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+	</bean>
+	
+    
+  
+    <!-- 使用zookeeper注册中心暴露服务地址 -->  
+    <!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->  
+  	<!-- <dubbo:registry protocol="zookeeper"  address="172.16.21.21:2181,172.16.21.21:2182,172.16.21.21:2183" /> -->
+  	<!-- <dubbo:registry protocol="zookeeper"  address="127.0.0.1:2181" /> -->
+  	<dubbo:registry protocol="zookeeper" address="${dubbo.registry.host_ports}"  />
+  	<!-- 生成远程服务代理，可以和本地bean一样使用 -->
+    <dubbo:consumer timeout="100000"  ></dubbo:consumer>
+  
+  
+  
+	<dubbo:annotation package="com.daiderong.test.junit"   />  
+			
+
+
+ 
+</beans>  

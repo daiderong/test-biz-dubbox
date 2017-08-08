@@ -1,0 +1,42 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	
+	
+	
+
+	<!--proxy-target-class="true"强制使用cglib代理   如果为false则spring会自动选择-->
+	<!--  <aop:aspectj-autoproxy proxy-target-class="true"/> --> 
+
+	<bean id="biz-sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"  >
+		<property name="dataSource" ref="bizDs" />
+		<property name="configLocation" >
+			<value>
+				classpath:biz-sqlmap-config/sqlmap-config.xml
+			</value>
+		</property>
+		<property name="mapperLocations" >
+			<value>
+				classpath:biz-sqlmap/*.xml
+			</value>
+		</property>
+	</bean>
+	
+	
+	<!-- 配置SQLSession模板 -->  
+    <bean id="biz-sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype" >  
+        <constructor-arg index="0" ref="biz-sqlSessionFactory" />
+    </bean>  
+
+
+
+	
+
+
+</beans> 

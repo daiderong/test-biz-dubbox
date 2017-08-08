@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<web-app  
+        version="3.0"  
+        xmlns="http://java.sun.com/xml/ns/javaee"  
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"> 
+        
+	 <display-name>biz-provider</display-name>
+	 <context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>biz-provider</param-value>
+	</context-param> 
+	
+	<welcome-file-list>
+		<welcome-file>/index.html</welcome-file>
+	</welcome-file-list>
+
+	
+	<!-- 加载所有jar包里classpath下的所有servlet下的xml -->
+	<!-- <servlet>
+		<servlet-name>main-serlvet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				classpath*:servlet/**/*.xml,
+			</param-value>
+		</init-param>
+		<load-on-startup>3</load-on-startup>
+	</servlet> -->
+
+	<!-- <servlet-mapping>
+		<servlet-name>main-serlvet</servlet-name>
+		<url-pattern>*.htm</url-pattern>
+	</servlet-mapping> -->
+	
+	
+	<!-- 加载所有jar包里classpath下的所有context目录下的xml文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath*:context/**/*.xml
+		</param-value>
+	</context-param>
+	
+	<!-- 实例化log4j配置监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
+	<!-- 实例化spring bean load 监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	
+		
+	<!-- 方便在生产环境修改和配置，生产上一般的级别要改成info,开发机器用的是debug -->
+	<!-- <context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>
+			file:/opt/wondersgroup/${webAppRootKey}/log4j.properties
+		</param-value>
+	</context-param> -->
+
+	
+	
+	
+	<!-- 第一个过滤器，初始化过滤器，也会设备字体编码 -->
+	 <!-- <filter>
+		<filter-name>initFilter</filter-name>
+		<filter-class>com.mytest.dubbo.filter.WebInitFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter> -->
+ 
+	<!-- <filter-mapping>
+		<filter-name>initFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping> -->
+
+
+	
+	<!-- 错误出现时的界面 -->
+<!-- 	 <error-page>
+	<error-code>500</error-code>
+	<location>/error.html</location>
+	</error-page>  --> 
+	
+	
+</web-app>

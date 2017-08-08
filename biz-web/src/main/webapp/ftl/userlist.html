@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>用户列表</title>
+<style type="text/css">
+	table td {
+	  border :1px solid gray;
+	}
+</style>
+<body>
+	
+	<table>
+		<tr>
+				<td>用户名</td>
+				<td>年龄</td>
+			</tr>
+		<#list userlist as user>
+			<tr>
+				<td>${user.username}</td>
+				<td>${user.age}</td>
+			</tr>
+		</#list>
+	</table>
+</body>
+</html>

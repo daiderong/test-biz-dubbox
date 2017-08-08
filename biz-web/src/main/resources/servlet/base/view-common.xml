@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
+
+
+	
+	<!-- 视图解析器 -->
+	 <bean id="viewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="requestContextAttribute" value="rc" />
+		<property name="cache">
+			<value>true</value>
+		</property>
+		<property name="suffix">
+			<value>.html</value>
+		</property>
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="contentType">
+			<value>text/html; charset=UTF-8</value>
+		</property>
+
+	</bean>
+
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath">
+			<value>/ftl/</value>
+		</property>
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="locale">zh_CN</prop>
+				<prop key="defaultEncoding">UTF-8</prop>
+				<prop key="date_format">yyyy-MM-dd</prop>
+				<prop key="time_format">HH:mm:ss</prop>
+				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+				<prop key="number_format">0.################</prop>
+				<prop key="boolean_format">true,false</prop>
+				<prop key="auto_import">"spring.ftl" as sp</prop>    
+			</props>
+		</property>
+	</bean>
+
+	
+	
+	
+	
+	
+
+	<bean id="multipartResolver"
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<property name="maxUploadSize">
+		<value>10048576</value>
+	</property>
+	</bean> 
+	<!-- <bean id="paramResolver"
+		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+		<property name="paramName" value="method"></property>
+		<property name="defaultMethodName" value="index"></property>
+	</bean> -->
+
+
+</beans>

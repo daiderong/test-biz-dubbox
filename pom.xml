@@ -1,0 +1,19 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.daiderong.test.dubbo</groupId>
+	<version>1.0-SNAPSHOT</version>
+	<name>dubbo-Consumer</name>
+	<artifactId>test-biz-dubbox</artifactId>
+	
+	
+	<modules>
+		<module>biz-parent</module>
+		<module>biz-provider-api</module>
+		<module>biz-dao</module>
+		<module>biz-provider</module>
+		<module>biz-provider-test</module>
+		<module>biz-web</module>
+	</modules>
+	
+</project>
