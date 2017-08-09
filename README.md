@@ -32,6 +32,14 @@
 
 
 
+### 提示
+
++ 不想自己打dubbox的包可以使用项目目录下jar目录下的dubbo-2.8.4.jar包，源代码也有
++ 也可以前往 https://github.com/dangdangdotcom/dubbox 下载下来自己打包
+
+
+
+
 
 		
 
