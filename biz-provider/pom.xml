@@ -84,11 +84,22 @@
 					<groupId>org.springframework</groupId>
 					<artifactId>spring-expression</artifactId>
 				</exclusion>
-				<!-- <exclusion> <artifactId>spring-web</artifactId> <groupId>org.springframework</groupId> 
-					</exclusion> <exclusion> <artifactId>spring-context</artifactId> <groupId>org.springframework</groupId> 
-					</exclusion> <exclusion> <artifactId>spring-aop</artifactId> <groupId>org.springframework</groupId> 
-					</exclusion> <exclusion> <artifactId>spring-expression</artifactId> <groupId>org.springframework</groupId> 
-					</exclusion> -->
+				<exclusion>
+					<artifactId>spring-web</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-context</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-aop</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-expression</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
 				<exclusion>
 					<artifactId>log4j</artifactId>
 					<groupId>log4j</groupId>
@@ -142,6 +153,6 @@
 			<artifactId>biz-provider-api</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
-		
+
 	</dependencies>
 </project>
