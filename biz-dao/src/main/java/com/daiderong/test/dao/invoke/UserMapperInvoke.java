@@ -17,5 +17,4 @@ public class UserMapperInvoke extends BaseMapperInvoke<UserMapper,User,String> {
 	
 	
 	
-	
 }

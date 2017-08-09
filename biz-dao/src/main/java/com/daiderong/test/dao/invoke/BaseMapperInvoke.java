@@ -6,6 +6,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.daiderong.test.dao.mapper.BaseMapper;
@@ -26,22 +29,35 @@ import com.github.pagehelper.PageInfo;
 public class BaseMapperInvoke<Mapper extends BaseMapper,T,ID> {
 
 	
+	private static  Log logger = LogFactory.getLog("BaseMapperInvoke");
+	
+	
 	@Resource
 	private SqlSessionTemplate sqlSessionTemplate;
 	
+	//将会通过第一次反射泛型第一个参数得到
+	protected Class<Mapper> mapperClass = null;
+	
 	
 	public  Mapper getMapper (){
-		Type genType = getClass().getGenericSuperclass();   
-		if(genType!=null){
-			Type[] params = ((ParameterizedType) genType).getActualTypeArguments(); 
-			if(params.length == 0){
-				throw new IllegalArgumentException("BaseMapper 泛型类必须定义");
-			}
-			@SuppressWarnings("unchecked")
-			Class<Mapper> modelClass =  (Class<Mapper>) params[0];
-			return (Mapper) sqlSessionTemplate.getMapper(modelClass);
+		
+		if(mapperClass != null){
+			return (Mapper) sqlSessionTemplate.getMapper(mapperClass);
 		}
-		return null;
+		else{
+			Type genType = getClass().getGenericSuperclass();   
+			if(genType!=null){
+				Type[] params = ((ParameterizedType) genType).getActualTypeArguments(); 
+				if(params.length == 0){
+					throw new IllegalArgumentException("Mapper 泛型类必须定义");
+				}
+				mapperClass =   (Class<Mapper>) params[0];
+				logger.debug("Mapper class :"+mapperClass);
+				return (Mapper) sqlSessionTemplate.getMapper(mapperClass);
+			}
+			throw new IllegalArgumentException("Mapper 泛型类必须定义");
+		}
+	
 	}
 	
 	
